@@ -191,8 +191,10 @@ fi
 
 for f in $list;do
 	outputEpisode="${f%.*}.mkv"
+	subtitleEpisode="${f%.*}.srt"
 	 #Seems to be working have to test in real cases
-	echo "mkvmerge -v -o \"$output/$outputEpisode\"  \"--language\" \"0:eng\" \"--forced-track\" \"0:no\" \"--language\" \"1:eng\" \"--forced-track\" \"1:no\" \"-a\" \"1\" \"-d\" \"0\" \"-S\" \"-T\" \"--no-global-tags\" \"--no-chapters\" \"(\" \"$input/$f\" \")\" \"--forced-track\" \"0:no\" \"-s\" \"0\" \"-D\" \"-A\" \"-T\" \"--no-global-tags\" \"--no-chapters\" \"(\" \"$subtitles/${f%.*}.srt\" \")\" \"--track-order\" \"0:0,0:1,1:0\""
+	echo "mkvmerge -v -o \"$output/$outputEpisode\"  \"--language\" \"0:eng\" \"--forced-track\" \"0:no\" \"--language\" \"1:eng\" \"--forced-track\" \"1:no\" \"-a\" \"1\" \"-d\" \"0\" \"-S\" \"-T\" \"--no-global-tags\" \"--no-chapters\" \"(\" \"$input/$f\" \")\" \"--forced-track\" \"0:no\" \"-s\" \"0\" \"-D\" \"-A\" \"-T\" \"--no-global-tags\" \"--no-chapters\" \"(\" \"$subtitles/$subtitleEpisode\" \")\" \"--track-order\" \"0:0,0:1,1:0\""
+	mkvmerge -v -o "$output/$outputEpisode"  "--language" "0:eng" "--forced-track" "0:no" "--language" "1:eng" "--forced-track" "1:no" "-a" "1" "-d" "0" "-S" "-T" "--no-global-tags" "--no-chapters" "(" "$input/$f" ")" "--forced-track" "0:no" "-s" "0" "-D" "-A" "-T" "--no-global-tags" "--no-chapters" "(" "$subtitles/$subtitleEpisode" ")" "--track-order" "0:0,0:1,1:0"
 done
 
 echo "Bye !"
